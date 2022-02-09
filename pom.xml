@@ -18,9 +18,15 @@
  <dependencies>
  
    <dependency>
+	<groupId>org.apache.maven.plugins</groupId>
+	<artifactId>maven-compiler-plugin</artifactId>
+    <version>3.9.0</version>
+   </dependency>
+
+   <dependency>
     <groupId>org.apache.maven.plugins</groupId>
-    <artifactId>maven-source-plugin</artifactId>
-    <version>3.2.1</version>
+    <artifactId>maven-javadoc-plugin</artifactId>
+    <version>3.3.1</version>
    </dependency>
 
    <dependency>
@@ -34,6 +40,12 @@
     <artifactId>maven-bundle-plugin</artifactId>
     <version>5.1.4</version>
   </dependency>
+
+   <dependency>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-source-plugin</artifactId>
+    <version>3.2.1</version>
+   </dependency>
 
    <dependency>
     <groupId>junit</groupId>
@@ -71,10 +83,36 @@
 
    <plugin>
     <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-compiler-plugin</artifactId>
+    <configuration>
+     <source>${java.version}</source>
+     <target>${java.version}</target>
+    </configuration>
+   </plugin>
+
+   <plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-javadoc-plugin</artifactId>
+    <executions>
+     <execution>
+      <id>attach-javadocs</id>
+      <goals>
+       <goal>jar</goal>
+      </goals>
+      <configuration>
+       <quiet>true</quiet>
+      </configuration>
+     </execution>
+    </executions>
+   </plugin>
+
+   <plugin>
+    <groupId>org.apache.maven.plugins</groupId>
     <artifactId>maven-jar-plugin</artifactId>
     <configuration>
      <archive>
       <manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
+      <addMavenDescriptor>false</addMavenDescriptor>
      </archive>
     </configuration>
    </plugin>
@@ -94,8 +132,38 @@
     </executions>
    </plugin>
 
+   <plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+     <artifactId>maven-javadoc-plugin</artifactId>
+     <configuration>
+      <source>8</source>
+     </configuration>
+    </plugin>
+
+   <plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-source-plugin</artifactId>
+    <executions>
+     <execution>
+      <id>attach-sources</id>
+      <goals>
+       <goal>jar-no-fork</goal>
+      </goals>
+     </execution>
+    </executions>
+   </plugin>
+
+    
    </plugins>
   </pluginManagement>
 
  </build>
+
+  <distributionManagement>
+   <repository>
+      <id>dote-snapshots</id>
+      <url>http://nexus.dote.ru/nexus/content/repositories/snapshots/</url>
+   </repository>
+  </distributionManagement>
+
 </project>
