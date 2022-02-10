@@ -13,39 +13,16 @@
  <properties>
   <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   <java.version>1.8</java.version>
+
+  <maven-compiler-plugin.version>3.9.0</maven-compiler-plugin.version>
+  <maven-javadoc-plugin.version>3.3.1</maven-javadoc-plugin.version>
+  <maven-jar-plugin.version>3.2.2</maven-jar-plugin.version>
+  <maven-bundle-plugin.version>5.1.4</maven-bundle-plugin.version>
+  <maven-source-plugin.version>3.2.1</maven-source-plugin.version>
+
  </properties>
 
  <dependencies>
- 
-   <dependency>
-	<groupId>org.apache.maven.plugins</groupId>
-	<artifactId>maven-compiler-plugin</artifactId>
-    <version>3.9.0</version>
-   </dependency>
-
-   <dependency>
-    <groupId>org.apache.maven.plugins</groupId>
-    <artifactId>maven-javadoc-plugin</artifactId>
-    <version>3.3.1</version>
-   </dependency>
-
-   <dependency>
-    <groupId>org.apache.maven.plugins</groupId>
-    <artifactId>maven-jar-plugin</artifactId>
-    <version>3.2.2</version>
-   </dependency>
-
-   <dependency>
-    <groupId>org.apache.felix</groupId>
-    <artifactId>maven-bundle-plugin</artifactId>
-    <version>5.1.4</version>
-  </dependency>
-
-   <dependency>
-    <groupId>org.apache.maven.plugins</groupId>
-    <artifactId>maven-source-plugin</artifactId>
-    <version>3.2.1</version>
-   </dependency>
 
    <dependency>
     <groupId>junit</groupId>
@@ -73,37 +50,12 @@
 
    <plugin>
     <groupId>org.apache.maven.plugins</groupId>
-    <artifactId>maven-source-plugin</artifactId>
-    <executions>
-     <execution>
-      <id>attach-sources</id>
-     </execution>
-    </executions>
-   </plugin>
-
-   <plugin>
-    <groupId>org.apache.maven.plugins</groupId>
     <artifactId>maven-compiler-plugin</artifactId>
+    <version>${maven-compiler-plugin.version}</version>
     <configuration>
      <source>${java.version}</source>
      <target>${java.version}</target>
     </configuration>
-   </plugin>
-
-   <plugin>
-    <groupId>org.apache.maven.plugins</groupId>
-    <artifactId>maven-javadoc-plugin</artifactId>
-    <executions>
-     <execution>
-      <id>attach-javadocs</id>
-      <goals>
-       <goal>jar</goal>
-      </goals>
-      <configuration>
-       <quiet>true</quiet>
-      </configuration>
-     </execution>
-    </executions>
    </plugin>
 
    <plugin>
@@ -120,6 +72,7 @@
    <plugin>
     <groupId>org.apache.felix</groupId>
     <artifactId>maven-bundle-plugin</artifactId>
+    <version>${maven-bundle-plugin.version}</version>
     <extensions>true</extensions>
     <executions>
      <execution>
@@ -135,6 +88,7 @@
    <plugin>
     <groupId>org.apache.maven.plugins</groupId>
      <artifactId>maven-javadoc-plugin</artifactId>
+    <version>${maven-javadoc-plugin.version}</version>
      <configuration>
       <source>8</source>
      </configuration>
@@ -143,6 +97,7 @@
    <plugin>
     <groupId>org.apache.maven.plugins</groupId>
     <artifactId>maven-source-plugin</artifactId>
+    <version>${maven-source-plugin.version}</version>
     <executions>
      <execution>
       <id>attach-sources</id>
